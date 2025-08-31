@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 import "./appointmentItem.scss";
-import type { ActiveAppointment } from "../../shared/interfaces/appointment.interface";
+import type { IAppointment } from "../../shared/interfaces/appointment.interface";
 import dayjs from "dayjs";
+import { type Optional } from "utility-types";
+
+type AppointmentProps = Optional<IAppointment, 'canceled'>;
 
 function AppointmentItem({
 	name,
 	date,
 	service,
 	phone,
-}: ActiveAppointment) {
+	canceled
+}: AppointmentProps) {
 
 	const [timeLeft, changeTimeLeft] = useState<string | null>(null);
 
@@ -33,12 +37,16 @@ function AppointmentItem({
 				<span className="appointment__service">Service: {service}</span>
 				<span className="appointment__phone">Phone: {phone}</span>
 			</div>
-			<div className="appointment__time">
-				<span>Time left:</span>
-				<span className="appointment__timer">{timeLeft}</span>
-			</div>
-			<button className="appointment__cancel">Cancel</button>
-			{/* <div className="appointment__canceled">Canceled</div> */}
+			{!canceled ? (
+				<>
+					<div className="appointment__time">
+						<span>Time left:</span>
+						<span className="appointment__timer">{timeLeft}</span>
+					</div>
+					<button className="appointment__cancel">Cancel</button>
+				</>
+			) : null}
+			{canceled ? <div className="appointment__canceled">Canceled</div> : null}
 		</div>
 	);
 }
