@@ -4,14 +4,19 @@ import type { IAppointment } from "../../shared/interfaces/appointment.interface
 import dayjs from "dayjs";
 import { type Optional } from "utility-types";
 
-type AppointmentProps = Optional<IAppointment, 'canceled'>;
+type AppointmentProps = Optional<IAppointment, 'canceled'> & {
+	openModal: (state: boolean) => void;
+	selectId: () => void
+};
 
 function AppointmentItem({
 	name,
 	date,
 	service,
 	phone,
-	canceled
+	canceled,
+	openModal,
+	selectId
 }: AppointmentProps) {
 
 	const [timeLeft, changeTimeLeft] = useState<string | null>(null);
@@ -43,7 +48,10 @@ function AppointmentItem({
 						<span>Time left:</span>
 						<span className="appointment__timer">{timeLeft}</span>
 					</div>
-					<button className="appointment__cancel">Cancel</button>
+					<button className="appointment__cancel" onClick={() => {
+						openModal(true);
+						selectId();
+					}}>Cancel</button>
 				</>
 			) : null}
 			{canceled ? <div className="appointment__canceled">Canceled</div> : null}
