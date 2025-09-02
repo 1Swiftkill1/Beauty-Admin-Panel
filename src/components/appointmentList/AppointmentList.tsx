@@ -37,9 +37,20 @@ function AppointmentList() {
 	return (
 		<>
 			{activeAppointments.map((item) => {
-				return <AppointmentItem openModal={setIsOpen} selectId={() => selectId(item.id)} {...item} key={item.id} />;
+				return (
+					<AppointmentItem
+						openModal={setIsOpen}
+						selectId={() => selectId(item.id)}
+						{...item}
+						key={item.id}
+					/>
+				);
 			})}
-			{isOpen ? <CancelModal hanldeClose={setIsOpen} selectedId={selectedId} /> : null}
+			<CancelModal
+				handleClose={setIsOpen}
+				selectedId={selectedId}
+				isOpen={isOpen}
+			/>
 		</>
 	);
 }

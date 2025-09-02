@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/react-transition-group": "^4.4.12",
     "dayjs": "^1.11.18",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-transition-group": "^4.4.5",
     "sass": "^1.91.0",
     "utility-types": "^3.11.0"
   },
