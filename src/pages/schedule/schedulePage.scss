@@ -7,7 +7,7 @@
 	padding-top: 50px;
 	&__controls {
 		display: grid;
-		grid-template-rows: 272px 370px;
+		grid-template-rows: 272px auto;
 		row-gap: 50px;
 	}
 	&__list {
