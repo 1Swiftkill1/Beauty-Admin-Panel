@@ -8,7 +8,7 @@ import { ActionsTypes } from "./actions";
 const initialState: IAppointmentState = {
     allAppointments: [],
     activeAppointments: [],
-    appointmentLoadingStatus: 'idle'
+    appointmentLoadingStatus: "idle",
 };
 
 interface ProviderProps {
