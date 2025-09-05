@@ -38,7 +38,7 @@
       "name": "Innes Olaf",
       "service": "Haircut",
       "phone": "+1 458 895 888",
-      "canceled": false
+      "canceled": true
     },
     {
       "id": 6,
