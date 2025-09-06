@@ -10,16 +10,24 @@ function AppointmentList() {
 	const {
 		activeAppointments,
 		getActiveAppointments,
-		appointmentLoadingStatus
+		appointmentLoadingStatus,
+		calendarDate
 	} = useContext(AppointmentContext);
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [selectedId, selectId] = useState(0);
-
+	const [showEmptyState, setShowEmptyState] = useState(false);
 
 	useEffect(() => {
 		getActiveAppointments();
-	}, []);
+	}, [calendarDate]);
+
+	useEffect(() => {
+        setShowEmptyState(
+            appointmentLoadingStatus === "idle" && 
+            activeAppointments.length === 0
+        );
+    }, [activeAppointments, appointmentLoadingStatus]);
 
 	const handleOpenModal = useCallback((id: number) => {
 		setIsOpen(true);
@@ -38,6 +46,15 @@ function AppointmentList() {
 			</>
 		)
 	}
+
+	if (showEmptyState) {
+        return (
+            <div className="empty-state">
+                <h3>Entry history is empty</h3>
+                <p>No records found for the selected period</p>
+            </div>
+        );
+    }
 
 	return (
 		<>
